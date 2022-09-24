@@ -1,0 +1,67 @@
+[
+  {
+    "date": "2022-09-24",
+    "low_1_time": "11:24",
+    "low_1_height_m": 1.38,
+    "low_2_time": "23:47",
+    "low_2_height_m": 1.13,
+    "high_1_time": "05:08",
+    "high_1_height_m": 6.35,
+    "high_2_time": "17:22",
+    "high_2_height_m": 6.67,
+    "sunrise": "07:09",
+    "sunset\r": "19:14\r"
+  },
+  {
+    "date": "2022-09-25",
+    "low_1_time": "11:56",
+    "low_1_height_m": 1.06,
+    "low_2_time": "",
+    "low_2_height_m": "",
+    "high_1_time": "05:40",
+    "high_1_height_m": 6.65,
+    "high_2_time": "17:53",
+    "high_2_height_m": 6.92,
+    "sunrise": "07:11",
+    "sunset\r": "19:12\r"
+  },
+  {
+    "date": "2022-09-26",
+    "low_1_time": "00:18",
+    "low_1_height_m": 0.89,
+    "low_2_time": "12:28",
+    "low_2_height_m": 0.84,
+    "high_1_time": "06:12",
+    "high_1_height_m": 6.88,
+    "high_2_time": "18:25",
+    "high_2_height_m": 7.09,
+    "sunrise": "07:12",
+    "sunset\r": "19:10\r"
+  },
+  {
+    "date": "2022-09-27",
+    "low_1_time": "00:49",
+    "low_1_height_m": 0.74,
+    "low_2_time": "13:01",
+    "low_2_height_m": 0.72,
+    "high_1_time": "06:44",
+    "high_1_height_m": 7.02,
+    "high_2_time": "18:58",
+    "high_2_height_m": 7.17,
+    "sunrise": "07:14",
+    "sunset\r": "19:08\r"
+  },
+  {
+    "date": "2022-09-28",
+    "low_1_time": "01:23",
+    "low_1_height_m": 0.7,
+    "low_2_time": "13:36",
+    "low_2_height_m": 0.73,
+    "high_1_time": "07:16",
+    "high_1_height_m": 7.05,
+    "high_2_time": "19:33",
+    "high_2_height_m": 7.14,
+    "sunrise": "07:15",
+    "sunset\r": "19:05"
+  }
+]
