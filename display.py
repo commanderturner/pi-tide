@@ -13,6 +13,7 @@ from PIL import ImageFont
 from luma.core.interface.serial import i2c, spi
 from luma.core.render import canvas
 from luma.oled.device import sh1106
+from typings import TideDatum
 # from luma.oled.device import ssd1306, ssd1309, ssd1325, ssd1331, sh1106
 
 font_path1 = os.path.abspath(os.path.join(os.path.dirname(__file__),'fonts', 'DejaVuSansMono.ttf'))
@@ -62,15 +63,15 @@ class Display:
             if text:
                 draw.text((1, 0), text=text, font=font1, fill="white") 
 
-    def writeTideTime(self, item, date):
+    def writeTideTime(self, item: TideDatum, date:str):
         self.device.show()
         print('writing tide data...')
         with canvas(self.device) as draw:
             if item:
-                high1Time = item["high_1_time"]
-                high2Time = item["high_2_time"]
-                low1Time = item["low_1_time"]
-                low2Time = item["low_2_time"]
+                high1Time = item.get("high_1_time")
+                high2Time = item.get("high_2_time")
+                low1Time = item.get("low_1_time")
+                low2Time = item.get("low_2_time")
                 draw.text((1, 0), text="high", font=font1, fill="white")
                 if high1Time:
                     draw.text((40,0), text=high1Time, font=font1, fill="white")

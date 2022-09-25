@@ -1,8 +1,11 @@
 
+from cProfile import run
 import time
 import json
 from display import Display
 from datetime import datetime
+from typing import List
+from typings import TideDatum
 
 # def testDisplay():
     # display = Display()
@@ -24,22 +27,30 @@ from datetime import datetime
 
 
    
-def getData():
+def getData() -> List[TideDatum]:
     print("Reading file...")
     with open('data/tide-newquay-2022-2023.json', encoding='utf-8-sig') as tideFile:
         tideData = json.load(tideFile)
         print(tideData)
         return tideData
 
-def getDataForDate(dateAsYYMMDD):
+def getDataForDate(dateAsYYMMDD: str):
     tideData = getData()
     def first(iterable, default=None):
         for item in iterable:
             return item
         return default
 
-    todayData = first(x for x in tideData if x["date"] == dateAsYYMMDD)
+    todayData = first(x for x in tideData if x.get("date") == dateAsYYMMDD)
     return todayData
+
+def updateDisplay(display: Display, dateAsYYMMDD: str):
+    dateData = getDataForDate(dateAsYYMMDD)
+    if dateData:
+        print ("Data found for ", dateAsYYMMDD)
+        display.writeTideTime(dateData, dateAsYYMMDD)
+    else:
+        display.writeText('Alas no data')
 
 # def runForever():
 #     control = Control(1)
@@ -55,15 +66,20 @@ def getDataForDate(dateAsYYMMDD):
 #         control.end()
 
 # testDisplay()
-display = Display()
-todayAsYYMMDD = datetime.today().strftime('%Y-%m-%d')
-todayData = getDataForDate(todayAsYYMMDD)
-if todayData["high_1_time"]:
-    print ("high tide 1: ", todayData["high_1_time"])
-   
-    display.writeTideTime(todayData, todayAsYYMMDD)
-else:
-    display.writeText('Alas no data')
 
-time.sleep(100)
-display.off()
+
+def runForever():
+    display = Display()
+    lastDateUsed = datetime.today().strftime('%Y-%m-%d')
+    updateDisplay(display, lastDateUsed)
+    try:
+        while True:
+            time.sleep(600)
+            todayAsYYMMDD = datetime.today().strftime('%Y-%m-%d')
+            if todayAsYYMMDD != lastDateUsed:
+                lastDateUsed= todayAsYYMMDD
+                updateDisplay(display, lastDateUsed)
+    except KeyboardInterrupt:
+        display.off()
+
+runForever()
