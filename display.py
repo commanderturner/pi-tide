@@ -4,7 +4,7 @@
 # PYTHON_ARGCOMPLETE_OK
 
 """
-Displays the current playing track on volumio
+Displays the tide data for specified date on sh1106 display
 """
 
 import os
@@ -47,18 +47,6 @@ class Display:
         except KeyboardInterrupt:
             pass
 
-    # def writeText(self, textArray):
-    #     # print 'checking track info...'
-    #     if len(textArray):
-    #         self.device.show()
-    #         print('writing text:', textArray)
-    #         with canvas(self.device) as draw:
-    #             if textArray[0]:
-    #                 draw.text((1, 0), text=textArray[0], font=font1, fill="white") 
-    #             if textArray[1]:
-    #                 draw.text((1, 17), text=textArray[1], font=font1, fill="white")
-    #     else:
-    #         self.off()
     def writeText(self, text):
         # print 'checking track info...'
         self.device.show()

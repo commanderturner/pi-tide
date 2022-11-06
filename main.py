@@ -7,30 +7,10 @@ from display import Display
 from datetime import datetime
 from typing import List
 from typings import TideDatum
-
-# def testDisplay():
-    # display = Display()
-    # trackNames = ["abba", "beatles", "coldplay", "david bowie", "eagles"]
-    # trackIndex = 0
-    # cycle = 1
-    # print('ok here are the songs you be playing...')
-    # while True:
-    #     time.sleep(2)
-    #     display.writeText(trackNames[trackIndex])
-    #     trackIndex = trackIndex + 1
-    #     if trackIndex == len(trackNames):
-    #         trackIndex = 0
-    #         cycle = cycle + 1
-    #     if cycle == 3:
-    #         display.off()
-    #         print('not going to print out tracks no more!')
-    #         break
-
-
    
 def getData() -> List[TideDatum]:
     print("Reading file...")
-    with open('data/tide-newquay-2022-2023.json', encoding='utf-8-sig') as tideFile:
+    with open(sourceFile, encoding='utf-8-sig') as tideFile:
         tideData = json.load(tideFile)
         print(tideData)
         return tideData
@@ -55,21 +35,6 @@ def updateDisplay(display: Display, date: datetime):
     else:
         display.writeText('Alas no data')
 
-# def runForever():
-#     control = Control(1)
-#     try:
-#             while True:
-#                 time.sleep(0.01)
-#                 # count += 1;
-#                 control.checkPins();
-#                 # if(count == 30):
-#                 #     count = 0
-#                 #     control.checkPlayerState()
-#     except KeyboardInterrupt:
-#         control.end()
-
-# testDisplay()
-
 def updateDisplayIfRequired(display: Display, firstRun: bool):
     print('Checking if display needs updating...')
     today = datetime.today()
@@ -91,6 +56,7 @@ def runForever():
 
 print('initialising')
 lastDateUsed: datetime = datetime.today()
+sourceFile = 'data/tide-perranporth-2022-2023.json'
 display = Display()
 runForever()
 # display.writeText('Alas no data')
