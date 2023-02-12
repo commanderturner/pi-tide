@@ -82,7 +82,23 @@ class Display:
                 # 4th add beach name ====   Perranporth  ====
                 beachLine = "Perranporth"
                 draw.text((32, 54), text=beachLine, font=fontInfo, fill="white")
-
+                
+    def writeSunRiseSunset(self, item: TideDatum, dateFormatted:str):
+        self.device.show()
+        print('writing sunrise/sunset data...')
+        with canvas(self.device) as draw:
+            # 1st do ==== 26th Sept 2022 ====
+            draw.text((24, 0), text=dateFormatted, font=fontInfo, fill="white")
+            if item:
+                sunrise = item.get("sunrise")
+                sunset= item.get("sunset")
+                if sunrise:
+                    draw.text((20,16), text="sunrise: " + sunrise, font=fontInfo, fill="white")
+                if sunset:
+                     draw.text((20,32), text="sunset: " + sunset, font=fontInfo, fill="white")
+            beachLine = "Perranporth"
+            draw.text((32, 54), text=beachLine, font=fontInfo, fill="white")
+            
     def off(self):
         print('turning off display')
         self.device.hide()

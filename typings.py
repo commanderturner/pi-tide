@@ -10,5 +10,6 @@ class TideDatum(TypedDict):
     high_1_height_m: NotRequired[float]
     high_2_time: NotRequired[str]
     high_2_height_m: NotRequired[float]
+    sunrise: str
     sunset: str
     
