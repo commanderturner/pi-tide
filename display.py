@@ -19,10 +19,15 @@ from typings import TideDatum
 fontNormalPath = os.path.abspath(os.path.join(os.path.dirname(__file__),'fonts', 'DejaVuSans.ttf'))
 fontLightPath = os.path.abspath(os.path.join(os.path.dirname(__file__),'fonts', 'DejaVuSans-ExtraLight.ttf'))
 fontInfoPath = os.path.abspath(os.path.join(os.path.dirname(__file__),'fonts', 'FreePixel.ttf'))
+fontNotoPath = os.path.abspath(os.path.join(os.path.dirname(__file__),'fonts', 'NotoEmoji-VariableFont_wght.ttf'))
+fontAwesomePath = os.path.abspath(os.path.join(os.path.dirname(__file__),'fonts', 'fontawesome-webfont.ttf'))
 # font_path2 = os.path.abspath(os.path.join(os.path.dirname(__file__),'fonts', 'DejaVuSans.ttf'))
-fontNormal = ImageFont.truetype(fontNormalPath, 12)
+fontNormal = ImageFont.truetype(fontNormalPath, 11)
 fontLight = ImageFont.truetype(fontLightPath, 12)
-fontInfo = ImageFont.truetype(fontInfoPath, 10)
+fontInfo = ImageFont.truetype(fontInfoPath, 11)
+fontForWave = ImageFont.truetype(fontNormalPath, 11)
+fontNoto = ImageFont.truetype(fontNotoPath, 11, encoding="unic")
+fontAwesome = ImageFont.truetype(fontAwesomePath, 11, encoding="unic")
 # font2 = ImageFont.truetype(font_path2, 11)
 StatLine = 0
 # DataLine = 17         # allow one line for weird ascenders and accent marks
@@ -60,7 +65,9 @@ class Display:
         print('writing tide data...')
         with canvas(self.device) as draw:
             # 1st do ==== 26th Sept 2022 ====
-            draw.text((24, 0), text=dateFormatted, font=fontInfo, fill="white")
+            draw.text((24, 3), text=dateFormatted, font=fontInfo, fill="white")
+            draw.text((96, 2), text="~~~", font=fontForWave, fill="white")
+            # draw.text((88, 0), text=u"\u01F30A", font=fontNoto, fill="white")
             # 2nd add high
             # 3rd add low
             # text.draw(x, y) (1,0) = top left corner 128x64
@@ -69,16 +76,16 @@ class Display:
                 high2Time = item.get("high_2_time")
                 low1Time = item.get("low_1_time")
                 low2Time = item.get("low_2_time")
-                draw.text((1, 16), text="~~~~~_", font=fontInfo, fill="white")
+                draw.text((1, 20), text="high tide", font=fontInfo, fill="white")
                 if high1Time:
-                    draw.text((40,16), text=high1Time, font=fontInfo, fill="white")
+                    draw.text((60,20), text=high1Time, font=fontInfo, fill="white")
                 if high2Time:
-                    draw.text((85,16), text=high2Time, font=fontInfo, fill="white")
-                draw.text((1, 33), text="~~____", font=fontInfo, fill="white")
+                    draw.text((95,20), text=high2Time, font=fontInfo, fill="white")
+                draw.text((1, 36), text="low tide", font=fontInfo, fill="white")
                 if low1Time:
-                    draw.text((40, 32), text=low1Time, font=fontInfo, fill="white")
+                    draw.text((60, 36), text=low1Time, font=fontInfo, fill="white")
                 if low2Time:
-                    draw.text((85, 32), text=low2Time, font=fontInfo, fill="white")
+                    draw.text((95, 36), text=low2Time, font=fontInfo, fill="white")
                 # 4th add beach name ====   Perranporth  ====
                 beachLine = "Perranporth"
                 draw.text((32, 54), text=beachLine, font=fontInfo, fill="white")
@@ -88,14 +95,17 @@ class Display:
         print('writing sunrise/sunset data...')
         with canvas(self.device) as draw:
             # 1st do ==== 26th Sept 2022 ====
-            draw.text((24, 0), text=dateFormatted, font=fontInfo, fill="white")
+            draw.text((24, 3), text=dateFormatted, font=fontInfo, fill="white")
+            draw.text((96, 0), text=u"\uF185", font=fontAwesome, fill="white")
             if item:
                 sunrise = item.get("sunrise")
                 sunset= item.get("sunset")
                 if sunrise:
-                    draw.text((20,16), text="sunrise: " + sunrise, font=fontInfo, fill="white")
+                    draw.text((1,20), text="sunrise:", font=fontInfo, fill="white")
+                    draw.text((50,20), text=sunrise, font=fontInfo, fill="white")
                 if sunset:
-                     draw.text((20,32), text="sunset: " + sunset, font=fontInfo, fill="white")
+                     draw.text((1,36), text="sunset:", font=fontInfo, fill="white")
+                     draw.text((50,36), text=sunset, font=fontInfo, fill="white")
             beachLine = "Perranporth"
             draw.text((32, 54), text=beachLine, font=fontInfo, fill="white")
             
